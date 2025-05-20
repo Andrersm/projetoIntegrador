@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Docente - Sistema SENAC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Cadastro SENAC</h1>
+        <p>Cadastro de Docente</p>
+    </header>
+
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link">Início</a></li>
+            <li class="nav-item"><a href="pessoa_fisica.html" class="nav-link">Pessoa Física</a></li>
+            <li class="nav-item"><a href="docente.html" class="nav-link active">Docente</a></li>
+            <li class="nav-item"><a href="aluno.html" class="nav-link">Aluno</a></li>
+            <li class="nav-item"><a href="fornecedor.html" class="nav-link">Fornecedor</a></li>
+            <li class="nav-item"><a href="curso.html" class="nav-link">Curso</a></li>
+            <li class="nav-item"><a href="disciplina.html" class="nav-link">Disciplina</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="success-message" id="successMessage">
+            Cadastro de docente realizado com sucesso!
+        </div>
+
+        <div class="card">
+            <h2>Cadastro de Docente</h2>
+            <form id="docenteForm" onsubmit="return validarDisciplina()">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo*</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="documento">Documento (CPF)*</label>
+                            <input type="text" id="documento" name="documento" placeholder="000.000.000-00" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="dataNascimento">Data de Nascimento</label>
+                            <input type="date" id="dataNascimento" name="dataNascimento">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone" placeholder="(00) 00000-0000">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail*</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="endereco">Endereço Completo*</label>
+                    <input type="text" id="endereco" name="endereco" required>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="id">Registro/ID do Docente*</label>
+                            <input type="text" id="id" name="id" required>
+                            <div class="error-message" id="idError"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Disciplinas*</label>
+                    <div class="error-message" id="disciplinaError"></div>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="disc1" name="disciplinas" value="POO101">
+                            <label for="disc1">Programação Orientada a Objetos (POO101)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="disc2" name="disciplinas" value="ED202">
+                            <label for="disc2">Estrutura de Dados (ED202)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="disc3" name="disciplinas" value="CAL101">
+                            <label for="disc3">Cálculo I (CAL101)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="disc4" name="disciplinas" value="BD303">
+                            <label for="disc4">Banco de Dados (BD303)</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 30px;">
+                    <button type="submit" class="btn">Cadastrar</button>
+                    <button type="reset" class="btn btn-secondary">Limpar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px; background-color: var(--primary-color); color: white;">
+        <p>Sistema de Cadastro SENAC - Projeto Integrador - 2025</p>
+    </footer>
+
+    <script>
+        function validarDisciplina() {
+            const disciplinas = document.querySelectorAll('input[name="disciplinas"]:checked');
+            const disciplinaError = document.getElementById('disciplinaError');
+            
+            if (disciplinas.length === 0) {
+                disciplinaError.textContent = 'Selecione pelo menos uma disciplina';
+                return false;
+            }
+            
+            const id = document.getElementById('id').value;
+            const idError = document.getElementById('idError');
+            
+            if (id.trim() === '') {
+                idError.textContent = 'O registro do docente é obrigatório';
+                return false;
+            }
+            
+            disciplinaError.textContent = '';
+            idError.textContent = '';
+            
+            document.getElementById('successMessage').style.display = 'block';
+            
+            window.scrollTo(0, 0);
+            
+            return false;
+        }
+        
+        document.getElementById('documento').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 9) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{3})(\d{2}).*/, '$1.$2.$3-$4');
+            } else if (value.length > 6) {
+                value = value.replace(/^(\d{3})(\d{3})(\d{0,3}).*/, '$1.$2.$3');
+            } else if (value.length > 3) {
+                value = value.replace(/^(\d{3})(\d{0,3}).*/, '$1.$2');
+            }
+            
+            e.target.value = value;
+        });
+        
+        document.getElementById('telefone').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 11) value = value.slice(0, 11);
+            
+            if (value.length > 6) {
+                value = value.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, '($1) $2-$3');
+            } else if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d{0,5}).*/, '($1) $2');
+            }
+            
+            e.target.value = value;
+        });
+    </script>
+</body>
+</html>

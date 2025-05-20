@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Cadastro SENAC</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Sistema de Cadastro SENAC</h1>
+        <p>Projeto Integrador</p>
+    </header>
+
+    <nav class="nav">
+        <ul class="nav-list">
+            <li class="nav-item"><a href="index.html" class="nav-link active">Início</a></li>
+            <li class="nav-item"><a href="pessoa_fisica.html" class="nav-link">Pessoa Física</a></li>
+            <li class="nav-item"><a href="docente.html" class="nav-link">Docente</a></li>
+            <li class="nav-item"><a href="aluno.html" class="nav-link">Aluno</a></li>
+            <li class="nav-item"><a href="fornecedor.html" class="nav-link">Fornecedor</a></li>
+            <li class="nav-item"><a href="curso.html" class="nav-link">Curso</a></li>
+            <li class="nav-item"><a href="disciplina.html" class="nav-link">Disciplina</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            <h2>Bem-vindo ao Sistema de Cadastro</h2>
+            <p>Este sistema permite o gerenciamento de cadastros para:</p>
+            
+            <div class="row" style="margin-top: 30px;">
+                <div class="col">
+                    <div class="card" style="text-align: center;">
+                        <h3>Pessoas Físicas</h3>
+                        <p>Cadastro e gerenciamento de pessoas físicas</p>
+                        <a href="pessoa_fisica.html" class="btn">Acessar</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="text-align: center;">
+                        <h3>Docentes</h3>
+                        <p>Cadastro e gerenciamento de docentes</p>
+                        <a href="docente.html" class="btn">Acessar</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="text-align: center;">
+                        <h3>Alunos</h3>
+                        <p>Cadastro e gerenciamento de alunos</p>
+                        <a href="aluno.html" class="btn">Acessar</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row" style="margin-top: 30px;">
+                <div class="col">
+                    <div class="card" style="text-align: center;">
+                        <h3>Fornecedores</h3>
+                        <p>Cadastro e gerenciamento de fornecedores</p>
+                        <a href="fornecedor.html" class="btn">Acessar</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="text-align: center;">
+                        <h3>Cursos</h3>
+                        <p>Cadastro e gerenciamento de cursos</p>
+                        <a href="curso.html" class="btn">Acessar</a>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="text-align: center;">
+                        <h3>Disciplinas</h3>
+                        <p>Cadastro e gerenciamento de disciplinas</p>
+                        <a href="disciplina.html" class="btn">Acessar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align: center; margin-top: 50px; padding: 20px; background-color: var(--primary-color); color: white;">
+        <p>Sistema de Cadastro SENAC - Projeto Integrador - 2025</p>
+    </footer>
+
+    <script>
+        function autenticar() {
+            console.log("Usuário autenticado");
+            return true;
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            autenticar();
+        });
+    </script>
+</body>
+</html>
